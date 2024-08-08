@@ -12,12 +12,11 @@ const Form = ({
   setcheckedBox,
   checkedBox,
 }) => {
+  const [radio, setRadio] = useState("some");
   //  validation schema
   const validationSchema = Yup.object({
     name: Yup.string().required("Required"),
     rate: Yup.number().required("Required"),
-    radioItems: Yup.string(),
-    allItems: Yup.string(),
   });
 
   // Initialize Formik
@@ -25,21 +24,14 @@ const Form = ({
     initialValues: {
       name: "",
       rate: 0,
-      radioItems: "some",
     },
     validationSchema,
 
     //form Submmition
     onSubmit: (values) => {
-      if (values.radioItems === "all") {
-        setcheckedBox(data.map((e) => e.id));
-      }
       console.log(
         JSON.stringify({
-          applicable_items:
-            values.radioItems === "all"
-              ? data.map((e) => e.id)
-              : [...checkedBox],
+          applicable_items: radio,
           applied_to: values.radioItems,
           name: values.name,
           rate: values.rate / 100,
@@ -49,9 +41,12 @@ const Form = ({
   });
 
   useEffect(() => {
-    setcheckedBox([]);
-    console.log(checkedBox);
-  }, []);
+    if (radio === "all") {
+      setcheckedBox(data.map((d) => d.id));
+    }
+    if (radio === "some") setcheckedBox([]);
+  }, [radio]);
+
   return (
     <div>
       {" "}
@@ -110,9 +105,9 @@ const Form = ({
               id="allItems"
               name="radioItems"
               type="radio"
-              onChange={formik.handleChange}
+              onChange={() => setRadio("all")}
               onBlur={formik.handleBlur}
-              value={"all"}
+              value={radio}
             />
             <label htmlFor="allItems">Apply to all items in collection</label>
           </div>
@@ -123,9 +118,9 @@ const Form = ({
               name="radioItems"
               defaultChecked
               type="radio"
-              onChange={formik.handleChange}
+              onChange={() => setRadio("some")}
               onBlur={formik.handleBlur}
-              value={"some"}
+              value={radio}
             />
             <label htmlFor="specificItems">
               Apply to specific items in collection
