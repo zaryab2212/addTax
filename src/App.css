@@ -1,38 +1,107 @@
-.App {
-  text-align: center;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.main{
+  padding: 7rem;
+  font-size: 1.1rem;
+
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+input{
+  font-size: 1rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.cat-heading{
+  background-color: rgb(226, 224, 224);
+  padding: .7rem;
+}
+
+.cat-heading > span{
+  margin: 3px;
+}
+
+.cat-Data{
+
+  margin-left: 3rem;
+  padding: .6rem;
+}
+
+.cat-data-items{
+  margin-top: .7rem;
+}
+
+span{
+  margin-left: 1rem;
+}
+
+            /* Search Area */
+.search-bar{
+  position: relative;
+}
+
+.search-icon{
+
+  position: absolute;
+  z-index: 100  ;
+  font-size: 1.4rem;
+  margin-top: .4rem;
+  top: 4;
+  left: 0;
+}
+
+.search-input{
+  z-index: -1;
+
+  padding: .5rem 1.5rem;
+  outline: none;
+  border: 1px solid silver;
+}
+
+.btn-div{
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: flex-end;
+  padding: .3rem;
+}
+
+.-submitbtn{
+  padding: .6rem;
+  background-color:rgb(228, 154, 18);
+  border: 1px solid rgb(214, 146, 20);
+  border-radius: 5px;
+  font-weight: 400;
+  font-size:1.4rem;
   color: white;
+  cursor: pointer;
+  
 }
 
-.App-link {
-  color: #61dafb;
+
+           /* input Area for user */
+.tax-input-div{
+  display: flex;
+  width: 80%;
+  justify-content: flex-start;
+  align-items:flex-start;
+  gap:.9rem;
+  margin-top: 1rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.tax-input{
+  padding: .7rem 1rem;
+  border: 1px solid gray;
+  border-radius: 5px;
+  width: 100%;
+  font-size: 1.1rem;
+}
+
+.radio-btn{
+  font-size: 1.5rem;
+  width: 1.5rem;
+}
+
+.radio-div{
+  margin: .7rem 0rem;
 }
