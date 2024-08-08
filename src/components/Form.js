@@ -42,7 +42,7 @@ const Form = ({
               : [...checkedBox],
           applied_to: values.radioItems,
           name: values.name,
-          rate: values.rate,
+          rate: values.rate / 100,
         })
       );
     },
