@@ -12,7 +12,9 @@ const App = () => {
 
   let cat = [...new Set(data.map((item) => item?.category?.name))].reverse();
 
+  // Check Box logic
   const handlecheckedBox = (e, isCategory) => {
+    // verify is cliked on Category CheckBox / List and pushing cat list
     if (isCategory) {
       if (!checkedBoxCat.includes(e)) {
         setcheckedBoxCat([...checkedBoxCat, e]);
@@ -21,6 +23,7 @@ const App = () => {
         setcheckedBoxCat([...fileredCat]);
       }
 
+      // if click on item which does not have any category
       if (typeof e === "undefined") {
         if (!checkedBoxCat.includes(e)) {
           let noCategory = data.filter((e) => {
@@ -71,6 +74,7 @@ const App = () => {
       }
     }
 
+    // logic if only one item click from a category
     if (!isCategory) {
       if (checkedBox.includes(e)) {
         setcheckedBox(checkedBox.filter((i) => i !== e));
