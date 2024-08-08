@@ -25,51 +25,40 @@ const App = () => {
 
       // if click on item which does not have any category
       if (typeof e === "undefined") {
+        // checking all item of no category
         if (!checkedBoxCat.includes(e)) {
-          let noCategory = data.filter((e) => {
-            if (!checkedBox?.includes(e.id) && !e.category) {
-              return e;
-            }
-          });
+          let noCategory = data
+            .filter((e) => !checkedBox?.includes(e.id) && !e.category)
+            .map((e) => e.id);
 
-          setcheckedBox([...checkedBox, ...noCategory.map((e) => e.id)]);
+          setcheckedBox([...checkedBox, ...noCategory]);
         } else {
-          let undefinedId = data.filter((e) => {
-            if (!e.category) {
-              return e;
-            }
-          });
-          let undefinedIds = undefinedId.map((e) => e.id);
-          setcheckedBox(checkedBox.filter((e) => !undefinedIds.includes(e)));
+          // unChecking all item of no category
+          let undefinedId = data.filter((e) => !e.category).map((e) => e.id); //category ids
+          setcheckedBox(checkedBox.filter((e) => !undefinedId.includes(e))); // filter ids
         }
       } else {
+        //if clicked on category
         if (isCategory && !checkedBoxCat.includes(e)) {
-          let allcheckedBox = data.filter((item) => {
-            if (
-              !checkedBox?.includes(item.id) &&
-              item.category &&
-              item.category.name === e
-            ) {
-              return item.id;
-            }
-          });
+          let allcheckedBox = data
+            .filter(
+              (item) =>
+                !checkedBox?.includes(item.id) &&
+                item.category &&
+                item.category.name === e
+            )
+            .map((e) => e.id); //geting all  ids of same cat
 
-          setcheckedBox([...checkedBox, ...allcheckedBox.map((e) => e.id)]);
+          setcheckedBox([...checkedBox, ...allcheckedBox]);
         } else {
-          let catId = data.filter((item) => {
-            if (checkedBox?.includes(item.id) && e === item?.category?.name) {
-              return item.id;
-            }
-          });
-          let catIds = catId.map((id) => id.id);
+          let catId = data
+            .filter(
+              (item) =>
+                checkedBox?.includes(item.id) && e === item?.category?.name
+            )
+            .map((id) => id.id);
 
-          setcheckedBox(
-            checkedBox.filter((item) => {
-              if (!catIds.includes(item)) {
-                return item;
-              }
-            })
-          );
+          setcheckedBox(checkedBox.filter((item) => !catId.includes(item)));
         }
       }
     }
